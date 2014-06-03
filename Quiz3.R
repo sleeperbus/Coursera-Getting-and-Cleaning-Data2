@@ -31,4 +31,12 @@ data <- join(gdp, country, by = "countrycode")
 nrow(data)
 arrange(data, desc(as.integer(rank)))[13, "fullname"]
 
-# Q-4
+# Q-4 What is the average GDP ranking for the "High income: OECD" and "High income: nonOECD" group?
+tapply(as.integer(data$rank), data$income.group, mean)
+
+# Q-5 
+library(Hmisc)
+data$group <- cut2(as.integer(data$rank), g = 5)
+table(data$group, data$income.group)
+
+
